@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="icons8-to-do-list.gif">
+    <title>To do list</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="box">
+            <h2>To Do List</h2>
+            <input type="text" placeholder="Write here..." id="inputbX">
+            <ul id="list"></ul>
+        </div>
+    </div>
+    <script>
+        let inputbX=document.querySelector('#inputbX');
+        let list = document.querySelector('#list');
+
+        inputbX.addEventListener("keyup",function(event){
+            if(event.key == "Enter"){
+                addItem(this.value)
+                this.value = ""
+            }
+        })
+
+        let addItem = (inputbX) => {
+            let listItem = document.createElement("li");
+            listItem.innerHTML = `${inputbX}<i></i>`;
+
+                listItem.addEventListener("click",function(){
+                    this.classList.toggle('done')
+                })
+
+                listItem.querySelector("i").addEventListener("click",function(){
+                    listItem.remove();
+                })
+
+                list.appendChild(listItem);
+        }
+    </script>
+</body>
+
+</html>
